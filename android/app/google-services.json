@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "568513966917",
+    "project_id": "cryptwallets",
+    "storage_bucket": "cryptwallets.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:568513966917:android:2d6182eb3e9ed29f5a442c",
+        "android_client_info": {
+          "package_name": "com.example.cryptoapptwo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "568513966917-qsfik1aug3ec5jav2lm5cek0f9ams0k3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmQChO7vk6MocGUk6NPpnBI0j6yVbhb70"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "568513966917-qsfik1aug3ec5jav2lm5cek0f9ams0k3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
