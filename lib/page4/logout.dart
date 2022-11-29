@@ -13,15 +13,13 @@ class LogoutPage extends StatefulWidget {
 }
 
 class _LogoutPageState extends State<LogoutPage> {
- 
- final FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
   //signout function
   signOut() async {
     await auth.signOut();
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => HomePage()));
   }
- 
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +57,9 @@ class _LogoutPageState extends State<LogoutPage> {
                         size: 25,
                         color: Colors.white,
                       ),
-                      SizedBox(width: 20,),
+                      SizedBox(
+                        width: 20,
+                      ),
                       Text('Logout'),
                     ]),
                     onPressed: () {
@@ -75,4 +75,3 @@ class _LogoutPageState extends State<LogoutPage> {
     );
   }
 }
-
