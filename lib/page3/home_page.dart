@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../page4/about.dart';
+import '../page4/contactus.dart';
+import '../page4/logout.dart';
 import '../page4/main2.dart';
 import '../page4/privacypolicylincese.dart';
 import '../page4/profile.dart';
@@ -23,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer:DrawerCode(),
+      drawer: DrawerCode(),
       appBar: AppBar(
         backgroundColor: Colors.green,
         elevation: 50.0,
@@ -111,8 +113,6 @@ class _HomePageState extends State<HomePage> {
                                 color: Colors.black,
                               ),
                             ),
-
-
                           ],
                         ),
                       ),
@@ -143,56 +143,72 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-
 //Drawer Code
 class DrawerCode extends StatelessWidget {
   const DrawerCode({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Drawer( //drawer property that contains Drawer()
-      child:ListView //a ListView Widget that contain children widget in a verticall order
-        (
-        children:
-        [
-          DrawerHeader
-            (
-            child: Image.asset('assets/images/kanchanara-ow-rGjlqJkM-unsplash.jpg',fit: BoxFit.cover,),
+    return Drawer(
+      backgroundColor: Colors.green,
+      //drawer property that contains Drawer()
+      child:
+          ListView //a ListView Widget that contain children widget in a verticall order
+              (
+        children: [
+          DrawerHeader(
+            child: Container(
+              height: double.infinity,
+              width: double.infinity,
+              child: Image.asset(
+                'assets/images/kanchanara-ow-rGjlqJkM-unsplash.jpg',
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
 
           //Profile PAGE
           ListTile(
+            leading: Icon(
+              Icons.person,
+              size: 25,
+              color: Colors.white,
+            ),
             title: Text(
               "Profile",
               style: TextStyle(
-                fontWeight:FontWeight.normal,
-                fontSize: 20.0,),
+                fontWeight: FontWeight.normal,
+                fontSize: 20.0,
+                color: Colors.white,
+              ),
             ),
-            onTap: ()
-            {
+            onTap: () {
               Navigator.pop(context);
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>  ProfilePage(),
+                  builder: (context) => ProfilePage(),
                 ),
               );
             },
-
-
           ),
-
 
           //CryptoCurrency Rate
           ListTile(
+            leading: Icon(
+              Icons.money_outlined,
+              size: 25,
+              color: Colors.white,
+            ),
             title: Text(
               "Cryptocurrrency Rate",
               style: TextStyle(
-                  fontWeight:FontWeight.normal,
-               fontSize: 20.0,),
+                fontWeight: FontWeight.normal,
+                fontSize: 20.0,
+                color: Colors.white,
+              ),
             ),
-            onTap: ()
-            {
+            onTap: () {
               Navigator.pop(context);
               Navigator.push(
                 context,
@@ -203,124 +219,192 @@ class DrawerCode extends StatelessWidget {
             },
           ),
 
-
-
           //Virtaul Website
 
           ListTile(
+            leading: Icon(
+              Icons.web,
+              size: 25,
+              color: Colors.white,
+            ),
             title: Text(
               "Virtual Website",
               style: TextStyle(
-                fontWeight:FontWeight.normal,
-                fontSize: 20.0,),
+                fontWeight: FontWeight.normal,
+                fontSize: 20.0,
+                color: Colors.white,
+              ),
             ),
-            onTap: ()
-            {
+            onTap: () {
               Navigator.pop(context);
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>  WebPage(),
+                  builder: (context) => WebPage(),
                 ),
               );
             },
-
-
           ),
-
-
 
           //Cryptocurrency Survey
 
           ListTile(
+            leading: Icon(
+              Icons.question_answer,
+              size: 25,
+              color: Colors.white,
+            ),
             title: Text(
               "Cryptocurrency Survey",
               style: TextStyle(
-                fontWeight:FontWeight.normal,
-                fontSize: 20.0,),
+                fontWeight: FontWeight.normal,
+                fontSize: 20.0,
+                color: Colors.white,
+              ),
             ),
-            onTap: ()
-            {
+            onTap: () {
               Navigator.pop(context);
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>  Survey(),
+                  builder: (context) => Survey(),
                 ),
               );
             },
-
-
           ),
-
-
 
           //SETTINGS PAGE
           ListTile(
-            title: Text(
-              "Settings",
-              style: TextStyle(
-                  fontWeight:FontWeight.normal,
-                fontSize: 18.5,),
+            leading: Icon(
+              Icons.help,
+              size: 25,
+              color: Colors.white,
             ),
-            onTap: ()
-            {
+            title: Text(
+              "Help & Support",
+              style: TextStyle(
+                fontWeight: FontWeight.normal,
+                fontSize: 18.5,
+                color: Colors.white,
+              ),
+            ),
+            onTap: () {
               Navigator.pop(context);
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>  SettingsPage(),
+                  builder: (context) => SettingsPage(),
                 ),
               );
             },
-
-
           ),
-
 
           //ABOUT PAGE
           ListTile(
+            leading: Icon(
+              Icons.info,
+              size: 25,
+              color: Colors.white,
+            ),
             title: Text(
               "About",
               style: TextStyle(
-                fontWeight:FontWeight.normal,
-                fontSize: 20.0,),
+                fontWeight: FontWeight.normal,
+                fontSize: 20.0,
+                color: Colors.white,
+              ),
             ),
-            onTap: ()
-            {
+            onTap: () {
               Navigator.pop(context);
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>  AboutPage(),
+                  builder: (context) => AboutPage(),
                 ),
               );
             },
           ),
 
+          //Privacy Policy And Terms
 
-        //Privacy Policy And Terms
-          //ABOUT PAGE
           ListTile(
+            leading: Icon(
+              Icons.policy,
+              size: 25,
+              color: Colors.white,
+            ),
             title: Text(
               "Privacy & Licenses",
               style: TextStyle(
-                fontWeight:FontWeight.normal,
-                fontSize: 20.0,),
+                fontWeight: FontWeight.normal,
+                fontSize: 20.0,
+                color: Colors.white,
+              ),
             ),
-            onTap: ()
-            {
+            onTap: () {
               Navigator.pop(context);
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>  PrivacyPolicy(),
+                  builder: (context) => PrivacyPolicy(),
                 ),
               );
             },
           ),
 
+          // Contact us page
 
+          ListTile(
+            leading: Icon(
+              Icons.contact_phone,
+              size: 25,
+              color: Colors.white,
+            ),
+            title: Text(
+              "Contact Us",
+              style: TextStyle(
+                fontWeight: FontWeight.normal,
+                fontSize: 20.0,
+                color: Colors.white,
+              ),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ContactusPage(),
+                ),
+              );
+            },
+          ),
+
+          // Logout Page
+
+          ListTile(
+            leading: Icon(
+              Icons.exit_to_app,
+              size: 25,
+              color: Colors.white,
+            ),
+            title: Text(
+              "Exit",
+              style: TextStyle(
+                fontWeight: FontWeight.normal,
+                fontSize: 20.0,
+                color: Colors.white,
+              ),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LogoutPage(),
+                ),
+              );
+            },
+          ),
         ],
       ),
     );

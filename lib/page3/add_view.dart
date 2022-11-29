@@ -51,7 +51,9 @@ class _AddViewsState extends State<AddViews> {
                 );
               }).toList(), //Error encounterred when  i fail to convert return to list:  The argument type 'Iterable<DropdownMenuItem<String>>' can't be assigned to the parameter type 'List<DropdownMenuItem<String>>?'.V
             ),
-             SizedBox(height: 28.0,),
+            SizedBox(
+              height: 28.0,
+            ),
             Container(
               width: MediaQuery.of(context).size.width / 1.3,
               child: TextFormField(
@@ -64,8 +66,9 @@ class _AddViewsState extends State<AddViews> {
             ),
             //Add Button
 
-            SizedBox(height: 28.0,),
-
+            SizedBox(
+              height: 28.0,
+            ),
 
             //Deposit Coins Function
             Container(
@@ -85,14 +88,13 @@ class _AddViewsState extends State<AddViews> {
                   Navigator.of(context)
                       .pop(); // Removes the user from the material widget screen and bring them back home_page.dart
                 },
-
-
-
                 child: const Text('Add Coins'),
               ),
             ),
 
-            SizedBox(height: 20.0,),
+            SizedBox(
+              height: 20.0,
+            ),
             //WITHDRAW COIN FUNCTION
 
             Container(
@@ -112,9 +114,6 @@ class _AddViewsState extends State<AddViews> {
                   Navigator.of(context)
                       .pop(); // Removes the user from the material widget screen and bring them back home_page.dart
                 },
-
-
-
                 child: const Text('Remove Coins'),
               ),
             ),
