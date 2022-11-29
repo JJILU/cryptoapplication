@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:cryptoapptwo/page4/settingspage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -44,6 +45,8 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
   bool showPassword = false;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -215,7 +218,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   //SAVE BUTTON
 
                   ElevatedButton(
-                    child: Text('SAVE'),
+                    child: Text('EDIT'),
                     style: ElevatedButton.styleFrom(
                       elevation: 5.5,
                       padding:
@@ -230,7 +233,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         color: Colors.white,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      // FirebaseAuth.sendPasswordResetEmail(email: "kapelenaomi@gmail.com");
+                    },
                   ),
 
                   /**

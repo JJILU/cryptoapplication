@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../page4/ContactusPage.dart';
 import '../page4/about.dart';
+import '../page4/helpandsupport.dart';
 import '../page4/logout.dart';
 import '../page4/main2.dart';
 import '../page4/privacypolicylincese.dart';
@@ -293,7 +294,7 @@ class DrawerCode extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SettingsPage(),
+                  builder: (context) => HelpAndSupport(),
                 ),
               );
             },

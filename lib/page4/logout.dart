@@ -31,45 +31,49 @@ class _LogoutPageState extends State<LogoutPage> {
           title: Text('Log out'),
           backgroundColor: Colors.green,
         ),
-        body: Center(
-          child: Stack(children: [
+        body: Stack(
+          children: [
             Container(
-              height: double.infinity,
               width: double.infinity,
+              height: double.infinity,
               child: Image.asset(
-                '',
+                'assets/images/800px_COLOURBOX24981559.jpg',
                 fit: BoxFit.cover,
               ),
             ), //
             Center(
-              child: Card(
-                margin: EdgeInsets.all(20),
-                elevation: 5,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.green,
+                  textStyle: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                      fontStyle: FontStyle.normal),
                 ),
-                color: Colors.white,
-                child: Container(
-                  child: ElevatedButton(
-                    child: Row(children: [
-                      Icon(
-                        Icons.exit_to_app_rounded,
-                        size: 25,
-                        color: Colors.white,
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.exit_to_app_rounded,
+                      size: 50,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      'Sign Out',
+                      style: TextStyle(
+                        fontSize: 25,
                       ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text('Logout'),
-                    ]),
-                    onPressed: () {
-                      signOut();
-                    },
-                  ),
+                    ),
+                  ],
                 ),
+                onPressed: () {
+                  signOut();
+                },
               ),
             ),
-          ]),
+          ],
         ),
       ),
     );
