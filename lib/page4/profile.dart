@@ -131,8 +131,12 @@ class _ProfilePageState extends State<ProfilePage> {
                             height: 130,
                             fit: BoxFit.cover,
                           )
-                        : Image.network(
-                            "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"),
+                        : CircleAvatar(
+                            backgroundImage: NetworkImage(
+                              "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80",
+                            ),
+                            radius: 105,
+                          ),
 
                     // Container(
                     //   width: 130,
@@ -267,7 +271,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
               //CREATE SPACE
               SizedBox(
-                height: 5,
+                height: 10,
               ),
 
               Row(
