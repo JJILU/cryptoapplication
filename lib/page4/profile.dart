@@ -241,29 +241,29 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
 
-              //TextFormField for the Password
-              TextFormField(
-                //obscureText parameter when set to true hides the user password
-                obscureText: true,
+              // //TextFormField for the Password
+              // TextFormField(
+              //   //obscureText parameter when set to true hides the user password
+              //   obscureText: true,
 
-                decoration: InputDecoration(
-                  suffixIcon: Icon(Icons.remove_red_eye_outlined),
-                  helperText: "Password must not be more than 8 characters",
-                  helperStyle: TextStyle(color: Colors.black),
-                  hintText: "*********",
-                  hintStyle: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                  ),
-                  labelText: "User Password",
-                  labelStyle: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                  ),
-                ),
+              //   decoration: InputDecoration(
+              //     suffixIcon: Icon(Icons.remove_red_eye_outlined),
+              //     helperText: "Password must not be more than 8 characters",
+              //     helperStyle: TextStyle(color: Colors.black),
+              //     hintText: "*********",
+              //     hintStyle: TextStyle(
+              //       fontSize: 18,
+              //       color: Colors.black,
+              //     ),
+              //     labelText: "User Password",
+              //     labelStyle: TextStyle(
+              //       fontSize: 18,
+              //       color: Colors.black,
+              //     ),
+              //   ),
 
-                controller: _userPassword,
-              ),
+              //   controller: _userPassword,
+              // ),
 
               //CREATE SPACE
               SizedBox(
@@ -273,30 +273,30 @@ class _ProfilePageState extends State<ProfilePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  //cancel button
-                  ElevatedButton(
-                    child: Text('RESET EMAIL'),
-                    style: ElevatedButton.styleFrom(
-                      elevation: 5.5,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 5, vertical: 20),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      primary: Colors.green,
-                      textStyle: const TextStyle(
-                        fontSize: 14,
-                        letterSpacing: 2.2,
-                        color: Colors.black,
-                      ),
-                    ),
-                    onPressed: () async {},
-                  ),
+                  // //cancel button
+                  // ElevatedButton(
+                  //   child: Text('RESET EMAIL'),
+                  //   style: ElevatedButton.styleFrom(
+                  //     elevation: 5.5,
+                  //     padding:
+                  //         EdgeInsets.symmetric(horizontal: 5, vertical: 20),
+                  //     shape: RoundedRectangleBorder(
+                  //       borderRadius: BorderRadius.circular(20),
+                  //     ),
+                  //     primary: Colors.green,
+                  //     textStyle: const TextStyle(
+                  //       fontSize: 14,
+                  //       letterSpacing: 2.2,
+                  //       color: Colors.black,
+                  //     ),
+                  //   ),
+                  //   onPressed: () async {},
+                  // ),
 
                   // Reset Password
 
                   ElevatedButton(
-                    child: Text('RESET EMAIL'),
+                    child: Text('Reset Password'),
                     style: ElevatedButton.styleFrom(
                       elevation: 5.5,
                       padding:
@@ -313,10 +313,35 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     onPressed: () async {
                       _showLoadingDialog(true, context);
-                      await FirebaseAuth.instance
-                          .sendPasswordResetEmail(email: _userEmail.text);
-                      //send user to next screen where they will enter the reset code
-                      _showLoadingDialog(false, context);
+                      try {
+                        await FirebaseAuth.instance
+                            .sendPasswordResetEmail(email: _userEmail.text);
+                        if (!mounted) return;
+                        _showLoadingDialog(true, context);
+                        //send user to next page or show a dialog to enter the code
+
+                      } catch (e) {
+                        Navigator.pop(context);
+                        if (e is FirebaseAuthException) {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text('Error'),
+                                content: Text(e.message ?? 'An error occurred'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
+                      }
                     },
                   ),
 
