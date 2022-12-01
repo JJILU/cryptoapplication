@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../page2/function_2.dart';
 import '../page3/home_page.dart';
 
 class SettingsUI extends StatelessWidget {
@@ -30,12 +31,16 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
- 
+  final _userEmail = TextEditingController(); //captures user input
+  final _userPassword = TextEditingController(); //captures user input
+
+  //captures user input
+
   //image picker
   File? _image;
 
-  Future getImage() async {
-    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+  Future getImage(ImageSource source) async {
+    final image = await ImagePicker().pickImage(source: source);
     if (image == null) return;
 
     final imageTemporary = File(image.path);
@@ -44,9 +49,23 @@ class _ProfilePageState extends State<ProfilePage> {
       this._image = imageTemporary;
     });
   }
+
   bool showPassword = false;
 
-
+  _showLoadingDialog(bool show, BuildContext context) {
+    if (show) {
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return const AlertDialog(
+                title: const Text('Loading'),
+                content: const Center(child: const LinearProgressIndicator()));
+          });
+    } else {
+      Navigator.of(context).pop();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,55 +120,71 @@ class _ProfilePageState extends State<ProfilePage> {
                 height: 15,
               ),
 
-
               //IMAGE WIDGET
               Center(
-                child: Stack(
+                child: Column(
                   children: [
-                    Container(
-                      width: 130,
-                      height: 130,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 4,
-                          color: Theme.of(context).scaffoldBackgroundColor,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            spreadRadius: 2,
-                            blurRadius: 10,
-                            color: Colors.black.withOpacity(0.1),
-                            offset: Offset(0, 10),
-                          ),
-                        ],
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(
-                              "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      right: 0,
-                      bottom: 0,
-                      child: Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            width: 4,
-                            color: Theme.of(context).scaffoldBackgroundColor,
-                          ),
-                          color: Colors.green,
-                        ),
-                        child: Icon(
-                          Icons.edit,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                    _image != null
+                        ? Image.file(
+                            _image!,
+                            width: 130,
+                            height: 130,
+                            fit: BoxFit.cover,
+                          )
+                        : Image.network(
+                            "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"),
+
+                    // Container(
+                    //   width: 130,
+                    //   height: 130,
+                    //   decoration: BoxDecoration(
+                    //     border: Border.all(
+                    //       width: 4,
+                    //       color: Theme.of(context).scaffoldBackgroundColor,
+                    //     ),
+                    //     boxShadow: [
+                    //       BoxShadow(
+                    //         spreadRadius: 2,
+                    //         blurRadius: 10,
+                    //         color: Colors.black.withOpacity(0.1),
+                    //         offset: Offset(0, 10),
+                    //       ),
+                    //     ],
+                    //     shape: BoxShape.circle,
+                    //     image: DecorationImage(
+                    //       fit: BoxFit.cover,
+                    //       image: _image != null
+                    //
+                    //               _image!,
+                    //               width: 130,
+                    //               height: 130,
+                    //               fit: BoxFit.cover,
+                    //             )
+                    //           : Image.network(
+                    //               "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"),
+                    //     ),
+                    //   ),
+                    // )
+                    // Positioned(
+                    //   right: 0,
+                    //   bottom: 0,
+                    //   child: Container(
+                    //     height: 40,
+                    //     width: 40,
+                    //     decoration: BoxDecoration(
+                    //       shape: BoxShape.circle,
+                    //       border: Border.all(
+                    //         width: 4,
+                    //         color: Theme.of(context).scaffoldBackgroundColor,
+                    //       ),
+                    //       color: Colors.green,
+                    //     ),
+                    //     child: Icon(
+                    //       Icons.edit,
+                    //       color: Colors.white,
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -165,15 +200,15 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Column(
                   children: [
                     CustomButton(
-                        title: 'Pick from image',
-                        icon: Icons.image_outlined,
-                        onClick: getImage,
-                        ),
+                      title: 'Pick from image',
+                      icon: Icons.image_outlined,
+                      onClick: () => getImage(ImageSource.gallery),
+                    ),
                     CustomButton(
-                        title: 'Pick from camera',
-                        icon: Icons.camera,
-                        onClick: () => {},
-                        ),
+                      title: 'Pick from camera',
+                      icon: Icons.camera,
+                      onClick: () => getImage(ImageSource.camera),
+                    ),
                   ],
                 ),
               ),
@@ -183,9 +218,52 @@ class _ProfilePageState extends State<ProfilePage> {
                 height: 10,
               ),
 
-              //EDIT USER INPUT CODE HERE
-              buildTextField("E-mail", "example@gmail.com", false),
-              buildTextField("Password", "**********", true),
+              // //EDIT USER INPUT CODE HERE
+              // buildTextField("E-mail", "example@gmail.com", false),
+              // buildTextField("Password", "**********", true),
+
+              TextFormField(
+                controller: _userEmail,
+
+                //decoration parameter for TextFormField
+                decoration: const InputDecoration(
+                  suffixIcon: Icon(Icons.mail_outline),
+                  hintText: "example@gmail.com",
+                  hintStyle: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
+                  labelText: "User Email",
+                  labelStyle: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+
+              //TextFormField for the Password
+              TextFormField(
+                //obscureText parameter when set to true hides the user password
+                obscureText: true,
+
+                decoration: InputDecoration(
+                  suffixIcon: Icon(Icons.remove_red_eye_outlined),
+                  helperText: "Password must not be more than 8 characters",
+                  helperStyle: TextStyle(color: Colors.black),
+                  hintText: "*********",
+                  hintStyle: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
+                  labelText: "User Password",
+                  labelStyle: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
+                ),
+
+                controller: _userPassword,
+              ),
 
               //CREATE SPACE
               SizedBox(
@@ -197,11 +275,11 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   //cancel button
                   ElevatedButton(
-                    child: Text('CANCEL'),
+                    child: Text('RESET EMAIL'),
                     style: ElevatedButton.styleFrom(
                       elevation: 5.5,
                       padding:
-                          EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                          EdgeInsets.symmetric(horizontal: 5, vertical: 20),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -212,17 +290,17 @@ class _ProfilePageState extends State<ProfilePage> {
                         color: Colors.black,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () async {},
                   ),
 
-                  //SAVE BUTTON
+                  // Reset Password
 
                   ElevatedButton(
-                    child: Text('EDIT'),
+                    child: Text('RESET EMAIL'),
                     style: ElevatedButton.styleFrom(
                       elevation: 5.5,
                       padding:
-                          EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                          EdgeInsets.symmetric(horizontal: 2, vertical: 20),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -233,11 +311,18 @@ class _ProfilePageState extends State<ProfilePage> {
                         color: Colors.white,
                       ),
                     ),
-                    onPressed: () {
-                      // FirebaseAuth.sendPasswordResetEmail(email: "kapelenaomi@gmail.com");
+                    onPressed: () async {
+                      _showLoadingDialog(true, context);
+                      await FirebaseAuth.instance
+                          .sendPasswordResetEmail(email: _userEmail.text);
+                      //send user to next screen where they will enter the reset code
+                      _showLoadingDialog(false, context);
                     },
                   ),
 
+                  SizedBox(
+                    height: 5,
+                  ),
                   /**
                       ElevatedButton(
                       // padding: EdgeInsets.symmetric(horizontal: 50),
