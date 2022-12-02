@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../page3/home_page.dart';
+import '../page3/verify_user.dart';
 
 void main() {
   runApp(LogoutPage());
@@ -18,7 +19,7 @@ class _LogoutPageState extends State<LogoutPage> {
   signOut() async {
     await auth.signOut();
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => HomePage()));
+        context, MaterialPageRoute(builder: (context) => Useridentity()));
   }
 
   @override

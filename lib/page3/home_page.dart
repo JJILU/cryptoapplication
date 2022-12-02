@@ -194,6 +194,32 @@ class DrawerCode extends StatelessWidget {
             },
           ),
 
+          //Home PAGE
+          ListTile(
+            leading: Icon(
+              Icons.home,
+              size: 25,
+              color: Colors.white,
+            ),
+            title: Text(
+              "Profile",
+              style: TextStyle(
+                fontWeight: FontWeight.normal,
+                fontSize: 20.0,
+                color: Colors.white,
+              ),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomePage(),
+                ),
+              );
+            },
+          ),
+
           //CryptoCurrency Rate
           ListTile(
             leading: Icon(

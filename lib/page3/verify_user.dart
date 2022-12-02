@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../page2/function_2.dart';
+import '../page4/resetpassword.dart';
 import 'home_page.dart';
 
 class Useridentity extends StatefulWidget {
@@ -39,7 +41,6 @@ class _UseridentityState extends State<Useridentity> {
         child: SafeArea(
           child: Column(
             children: [
-
               SizedBox(
                 height: 60,
               ),
@@ -63,7 +64,6 @@ class _UseridentityState extends State<Useridentity> {
                 ),
               ),
 
-
               //Sized Box For Space
               SizedBox(
                 height: 60,
@@ -76,7 +76,6 @@ class _UseridentityState extends State<Useridentity> {
 
                 decoration: InputDecoration(
                   suffixIcon: Icon(Icons.remove_red_eye_outlined),
-
                   helperText: "Password must not be more than 8 characters",
                   helperStyle: TextStyle(color: Colors.white),
                   hintText: "*********",
@@ -93,6 +92,9 @@ class _UseridentityState extends State<Useridentity> {
 
                 controller: _userPassword,
               ),
+
+              
+        
 
               SizedBox(
                 height: 50,
@@ -151,8 +153,27 @@ class _UseridentityState extends State<Useridentity> {
                   },
                   child: Text('Login'),
                 ),
-                ),
+              ),
 
+              SizedBox(
+                height: 20,
+              ),
+              //Sends user to the reset passwrd page
+              TextButton(
+                child: Text(
+                  'Forgort Password ?',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ResetPassword(),
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),

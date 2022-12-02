@@ -44,27 +44,30 @@ class _WebPageState extends State<WebPage> {
             ),
           ],
         ),
-        body: 
-          
-             Stack(
-               children: 
-               [
-                
-               ElevatedButton(
-                onPressed: _launchUrl,
-                child: Text('Click Here To Visit Our Virtual Shop Website '),
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
-                  textStyle: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                  ),
+        body: Stack(
+          alignment: AlignmentDirectional.center,
+          children: [
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              child: Image.asset(
+                'assets/images/800px_COLOURBOX24981559.jpg',
+                fit: BoxFit.cover,
+              ),
+            ), //
+            ElevatedButton(
+              onPressed: _launchUrl,
+              child: Text('Click Here To Visit Our Virtual Shop Website '),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.green,
+                textStyle: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
                 ),
-                         ),
-               ],
-             ),
-          
-        
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

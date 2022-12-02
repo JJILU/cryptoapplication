@@ -50,6 +50,8 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
+  
+//Reset Password
   bool showPassword = false;
 
   _showLoadingDialog(bool show, BuildContext context) {
