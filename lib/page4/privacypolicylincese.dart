@@ -18,14 +18,12 @@ class PrivacyPolicy extends StatelessWidget {
   }
 }
 
-
 class _MyAppContent extends StatefulWidget {
   @override
   _MyAppContentState createState() => _MyAppContentState();
 }
 
 class _MyAppContentState extends State<_MyAppContent> {
-
   @override
   void initState() {
     super.initState();
@@ -64,10 +62,26 @@ to customize your experience by allowing advertising to be targeted to the users
     return MaterialApp(
       home: Scaffold(
         drawer: DrawerCode(),
-        appBar:AppBar(
+        appBar: AppBar(
           title: Text('Privacy and Licenses'),
           backgroundColor: Colors.green,
-
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(),
+                  ),
+                );
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ),
+            ),
+          ],
         ),
         body: Center(
           child: ElevatedButton(
@@ -85,8 +99,7 @@ to customize your experience by allowing advertising to be targeted to the users
                 children: <Widget>[
                   Padding(
                       padding: EdgeInsets.only(top: 15),
-                      child: Text('The Crycurrency Privacy Policy & Licenses')
-                  )
+                      child: Text('The Crycurrency Privacy Policy & Licenses'))
                 ],
               );
             },

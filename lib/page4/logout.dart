@@ -30,6 +30,23 @@ class _LogoutPageState extends State<LogoutPage> {
         appBar: AppBar(
           title: Text('Log out'),
           backgroundColor: Colors.green,
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(),
+                  ),
+                );
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ),
+            ),
+          ],
         ),
         body: Stack(
           children: [

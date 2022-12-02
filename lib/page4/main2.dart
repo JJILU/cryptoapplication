@@ -30,8 +30,8 @@ class _SurveyState extends State<Survey> {
           'How likely are you to invest in cryptocurrency next year?',
       'answers': [
         {'text': 'Extremely likely', 'score': 8},
-        {'text': 'Very Likely' , 'score': 6},
-        {'text':'Somewhat likely', 'score': 4},
+        {'text': 'Very Likely', 'score': 6},
+        {'text': 'Somewhat likely', 'score': 4},
         {'text': 'Not at all likely', 'score': 2}
       ],
     },
@@ -66,19 +66,18 @@ class _SurveyState extends State<Survey> {
   ];
 
   var _questionIndex = 0;
-  var _totalScore=0;
+  var _totalScore = 0;
 
   //reset method
 
   void _resetQuiz() {
     setState(() {
       _questionIndex = 0;
-      _totalScore=0;
+      _totalScore = 0;
     });
-
   }
-  void _answerQuestion(int score) {
 
+  void _answerQuestion(int score) {
     _totalScore = _totalScore + score;
     setState(() {
       _questionIndex = _questionIndex + 1;
@@ -99,6 +98,23 @@ class _SurveyState extends State<Survey> {
           elevation: 3,
           centerTitle: true,
           backgroundColor: Colors.green,
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(),
+                  ),
+                );
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ),
+            ),
+          ],
         ),
         body: _questionIndex < _questions.length
             ? Quiz(
@@ -106,7 +122,7 @@ class _SurveyState extends State<Survey> {
                 questionIndex: _questionIndex,
                 questions: _questions,
               )
-            : Result(_totalScore,_resetQuiz),
+            : Result(_totalScore, _resetQuiz),
       ),
     );
   }

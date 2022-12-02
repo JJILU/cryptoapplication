@@ -21,6 +21,23 @@ class _ContactusPageState extends State<ContactusPage> {
         appBar: AppBar(
           title: Text('Contact Us'),
           backgroundColor: Colors.green,
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(),
+                  ),
+                );
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ),
+            ),
+          ],
         ),
         body: Center(
           child: Stack(children: [
