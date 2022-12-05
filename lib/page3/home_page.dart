@@ -202,7 +202,7 @@ class DrawerCode extends StatelessWidget {
               color: Colors.white,
             ),
             title: Text(
-              "Profile",
+              "Home",
               style: TextStyle(
                 fontWeight: FontWeight.normal,
                 fontSize: 20.0,

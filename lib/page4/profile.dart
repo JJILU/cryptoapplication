@@ -50,7 +50,6 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
-  
 //Reset Password
   bool showPassword = false;
 
@@ -206,7 +205,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Column(
                   children: [
                     CustomButton(
-                      title: 'Pick from image',
+                      title: 'Pick from gallary',
                       icon: Icons.image_outlined,
                       onClick: () => getImage(ImageSource.gallery),
                     ),
