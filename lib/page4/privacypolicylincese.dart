@@ -36,23 +36,20 @@ class _MyAppContentState extends State<_MyAppContent> {
       yield LicenseEntryWithLineBreaks(<String>['ACustomLibrary'], '''
   Copyright 2022 CryptoWallet.com. All rights reserved.
   
-     *Personally Identifiable Information that You Provide to Us
-We do not collect personally identifiable information e.g., name, e-mail address,
- contact or similar information unless you choose to provide it to us. 
- If you voluntarily provide us with personal information, 
- for example by sending an e-mail or by filling out a form and submitting it through our Website, 
- we may use that information only to respond to your message and to help us provide you with the information or services that you request. 
-To the extent that we process your personal information based on your consent, you may withdraw your consent at any time as stated below.
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS
+     *The Crypto Wallet appliction collects personal information such as Email id,Password,and 
+     the transaction information about the dates of purchasing,selling of crypto currencies,it also
+     keeps a record of the type of crypto coins invested in,this helps the Crypto Wallet to help
+     to serve you better by knowing the best crypto curriences according to a survey of the most used
+     coins,we do share your information with third-parties. 
   
   
   *How this Information is Used
 The information we collect is used for a variety of purposes, such as:
+The information is used for to conduct surveys on to know the best performing crypto coins.
+The information allows to create better future versions of this application
+The information made primarly in feedback calls,sms,email allows to know the limitation of our 
+application and how best resolve failures of service
 
-to enable your use of our services and fulfill your requests for certain features, such as enabling you to participate in and renew paid services, polls, and message boards;
-by performing statistical, demographic and marketing analyses of users of our services to improve our relationship with our customers
-for product development purposes and to generally inform advertisers about the nature of our subscriber base to improve our relationship with our customers;
-to customize your experience by allowing advertising to be targeted to the users for whom such advertising is most pertinent
 ''');
     });
   }
@@ -85,7 +82,6 @@ to customize your experience by allowing advertising to be targeted to the users
         ),
         body: Center(
           child: ElevatedButton(
-            
             style: ElevatedButton.styleFrom(
               primary: Colors.green,
             ),
