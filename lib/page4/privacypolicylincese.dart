@@ -34,7 +34,7 @@ class _MyAppContentState extends State<_MyAppContent> {
     LicenseRegistry.reset();
     LicenseRegistry.addLicense(() async* {
       yield LicenseEntryWithLineBreaks(<String>['ACustomLibrary'], '''
-  Copyright 2022 CryptoWallet.com. All rights reserved.
+  Copyright 2022 CryptoWallet ltd. All rights reserved.
   
      *The Crypto Wallet appliction collects personal information such as Email id,Password,and 
      the transaction information about the dates of purchasing,selling of crypto currencies,it also
