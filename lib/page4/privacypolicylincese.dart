@@ -36,7 +36,7 @@ class _MyAppContentState extends State<_MyAppContent> {
       yield LicenseEntryWithLineBreaks(<String>['ACustomLibrary'], '''
   Copyright 2022 CryptoWallet ltd. All rights reserved.
   
-     *The Crypto Wallet appliction collects personal information such as Email id,Password,and 
+     *The Crypto Wallet is an  appliction collects personal information such as Email id,Password,and 
      the transaction information about the dates of purchasing,selling of crypto currencies,it also
      keeps a record of the type of crypto coins invested in,this helps the Crypto Wallet to help
      to serve you better by knowing the best crypto curriences according to a survey of the most used
